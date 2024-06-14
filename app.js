@@ -104,8 +104,10 @@ class CountDown extends Homey.App {
           //console.log ('string conversion')
           obj.value = parseInt(obj.value, 10);
         }
-        // 5.2 moet afgerond worden
-        obj.value = Math.round(obj.value);
+
+        // 5.25 moet afgerond worden naar 5.2, 100ms precisie
+        obj.value =  Math.round(obj.value * 10) / 10
+
         //console.log(obj.value)
         // # github issue #40
         //console.log(obj.name, obj.value, obj.pause)
@@ -113,7 +115,7 @@ class CountDown extends Homey.App {
           console.log('fixing remove entry for: ' + obj.name);
           variableManager.updateVariable(obj.name, obj.value, 'number', obj.pause, false);
         }
-        if (obj.value == 0 || obj.value < 0) {
+        if (obj.value <= 0) {
           //this.log("Value triggered: ",obj.value);
           // homey.flow.getTriggerCard('countdown_test');
           //var tokens = { 'variable' : obj.name };
@@ -126,11 +128,11 @@ class CountDown extends Homey.App {
         if (obj.value > 0 && obj.pause != 1) {
           //console.log(obj.remove)
           //console.log(obj.name, obj.value, obj.pause);
-          variableManager.updateVariable(obj.name, obj.value - 1, 'number', '0', false);
+          variableManager.updateVariable(obj.name, obj.value - 0.1, 'number', '0', false);
           //homey.flow.getTriggerCard('countdown_timer_changed', tokens, state);
         }
       });
-    }, 1000); // end interval
+    }, 100); // end interval
 
   }
 }

@@ -258,6 +258,32 @@
             }
           }
         ]
+      },
+      {
+        "id": "countdown_timer_changed_precise",
+        "title": {
+          "en": "1/10th of a second has elapsed",
+          "nl": "1/10e van een seconde is verstreken"
+        },
+        "token": [
+          {
+            "name": "variable",
+            "title": {
+              "en": "Name timer",
+              "nl": "Naam zandloper"
+            }
+          }
+        ],
+        "args": [
+          {
+            "name": "variable",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Countdown timer name",
+              "nl": "Zandloper naam"
+            }
+          }
+        ]
       }
     ],
     "conditions": [
